@@ -11875,20 +11875,20 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
-<span class="n">n_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">size</span>
+<span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
 <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
 
 <span class="c1"># TODO: Calculate passing students</span>
-<span class="n">n_passed</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;passed == &#39;yes&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
+<span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;passed == &#39;yes&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># TODO: Calculate failing students</span>
-<span class="n">n_failed</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;passed == &#39;no&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
+<span class="n">n_failed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;passed == &#39;no&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># TODO: Calculate graduation rate</span>
 <span class="n">grad_rate</span> <span class="o">=</span> <span class="n">n_passed</span> <span class="o">*</span><span class="mf">100.0</span> <span class="o">/</span> <span class="n">n_students</span>
@@ -11911,10 +11911,10 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Total number of students: 12245
+<pre>Total number of students: 395
 Number of features: 30
-Number of students who passed: 8215
-Number of students who failed: 4030
+Number of students who passed: 265
+Number of students who failed: 130
 Graduation rate of the class: 67.09%
 </pre>
 </div>
@@ -11938,7 +11938,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -12020,7 +12020,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12091,7 +12091,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12198,7 +12198,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12317,13 +12317,13 @@ Testing set has 95 samples.
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0011 seconds
+Trained model in 0.0013 seconds
 Made predictions in 0.0003 seconds.
 F1 score for training set: 0.2857.
 Made predictions in 0.0002 seconds.
 F1 score for test set: 0.2588.
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0006 seconds
+Trained model in 0.0007 seconds
 Made predictions in 0.0003 seconds.
 F1 score for training set: 0.7559.
 Made predictions in 0.0002 seconds.
@@ -12332,7 +12332,7 @@ Training a GaussianNB using a training set size of 300. . .
 Trained model in 0.0007 seconds
 Made predictions in 0.0003 seconds.
 F1 score for training set: 0.7931.
-Made predictions in 0.0003 seconds.
+Made predictions in 0.0002 seconds.
 F1 score for test set: 0.8429.
 Training a DecisionTreeClassifier using a training set size of 100. . .
 Trained model in 0.0007 seconds
@@ -12342,33 +12342,33 @@ Made predictions in 0.0001 seconds.
 F1 score for test set: 0.7407.
 Training a DecisionTreeClassifier using a training set size of 200. . .
 Trained model in 0.0013 seconds
-Made predictions in 0.0002 seconds.
+Made predictions in 0.0001 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0001 seconds.
 F1 score for test set: 0.8030.
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0022 seconds
+Trained model in 0.0021 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0001 seconds.
 F1 score for test set: 0.6992.
 Training a AdaBoostClassifier using a training set size of 100. . .
-Trained model in 0.0825 seconds
-Made predictions in 0.0043 seconds.
-F1 score for training set: 0.9851.
+Trained model in 0.1082 seconds
 Made predictions in 0.0042 seconds.
+F1 score for training set: 0.9851.
+Made predictions in 0.0041 seconds.
 F1 score for test set: 0.7639.
 Training a AdaBoostClassifier using a training set size of 200. . .
-Trained model in 0.0830 seconds
-Made predictions in 0.0051 seconds.
+Trained model in 0.0842 seconds
+Made predictions in 0.0055 seconds.
 F1 score for training set: 0.8848.
-Made predictions in 0.0061 seconds.
+Made predictions in 0.0044 seconds.
 F1 score for test set: 0.8201.
 Training a AdaBoostClassifier using a training set size of 300. . .
-Trained model in 0.0910 seconds
-Made predictions in 0.0059 seconds.
+Trained model in 0.0908 seconds
+Made predictions in 0.0056 seconds.
 F1 score for training set: 0.8413.
-Made predictions in 0.0044 seconds.
+Made predictions in 0.0041 seconds.
 F1 score for test set: 0.8029.
 </pre>
 </div>
