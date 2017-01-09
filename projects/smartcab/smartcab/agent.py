@@ -41,9 +41,11 @@ class LearningAgent(Agent):
         # If 'testing' is True, set epsilon and alpha to 0
         if self.learning and not testing:
             # self.epsilon = self.epsilon - 0.01
-            self.epsilon = 0.981 * (self.epsilon**1.18)
+            self.epsilon = 0.9999993 * (self.epsilon**1.06)
+            # self.epsilon = 0.999999 * (self.epsilon**1.30)
+
             # self.alpha = 0.99 * (self.alpha**1.33)
-            self.alpha = 0.999 * (self.alpha**1.21)
+            self.alpha = 0.999999999 * (self.alpha**1.03)
             # self.epsilon = 0.96 * self.epsilon
             # self.alpha = 0.96 * self.alpha
         if testing:
@@ -69,9 +71,9 @@ class LearningAgent(Agent):
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
 # CONTINUE: IMPLEMENTING Q-LEARNING ALGO
-        state = [waypoint, inputs['light'], inputs['oncoming']]
+        state = [waypoint, inputs['light'], inputs['oncoming'], inputs['left']]
         # state = [waypoint, inputs['light'], inputs['oncoming'], inputs['left'], inputs['right']]
-
+        self.createQ(state)
 
         return state
 
@@ -91,9 +93,9 @@ class LearningAgent(Agent):
         for action in stateDict:
             if stateDict[action] > maxQ:
                 maxQ = stateDict[action]
-                bestAction = action
+
         print "maxQ: ",maxQ
-        return bestAction
+        return maxQ
 
 
     def createQ(self, state):
@@ -132,13 +134,19 @@ class LearningAgent(Agent):
 
             if value > self.epsilon:
                 print 'taking deliberate action'
-                action = self.get_maxQ(state)
-                # actions = self.Q[stringState]
+                maxQ = self.get_maxQ(state)
+                actions = self.Q[stringState]
+                candidates = actions.values().index(maxQ)
+                if type(candidates) is list:
+                    action = actions.keys()[candidates[random.choice()]]
                 # maxQ = self.get_maxQ(state)
                 # print maxQ
                 # action = actions.keys()[actions.values().index(maxQ)]
-        else:
-            action = self.get_maxQ(state)
+
+                else:
+                    action = actions.keys()[candidates]
+        # else:
+        #     action = self.get_maxQ(state)
 
         ###########
         ## TO DO ##
@@ -175,7 +183,7 @@ class LearningAgent(Agent):
             state, choose an action, receive a reward, and learn if enabled. """
 
         state = self.build_state()          # Get current state
-        self.createQ(state)                 # Create 'state' in Q-table
+        # self.createQ(state)                 # Create 'state' in Q-table
         action = self.choose_action(state)  # Choose an action
         reward = self.env.act(self, action) # Receive a reward
         self.learn(state, action, reward)   # Q-learn
@@ -201,7 +209,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning=True, alpha=0.99)
+    agent = env.create_agent(LearningAgent, learning=True, alpha=0.999)
 
     ##############
     # Follow the driving agent
@@ -223,7 +231,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10, tolerance=0.001)
+    sim.run(n_test=50, tolerance=0.0005)
 
 
 if __name__ == '__main__':
